@@ -65,10 +65,10 @@ namespace MyNewService
 
         protected override void OnStart(string[] args)
         {
-            // Update the service state to Start Pending.  
+            // Update the service state to Start Pending.   
             ServiceStatus serviceStatus = new ServiceStatus();
             serviceStatus.dwCurrentState = ServiceState.SERVICE_START_PENDING;
-            serviceStatus.dwWaitHint = 100000;
+            serviceStatus.dwWaitHint = 100000; 
             SetServiceStatus(this.ServiceHandle, ref serviceStatus);
             eventLog1.WriteEntry("In OnStart");
             // Set up a timer to trigger every minute.  
