@@ -9,28 +9,21 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Runtime.InteropServices;
 
-namespace MyNewService
+namespace ImageService
 {
-    public partial class MyNewService : ServiceBase
+    public partial class ImageService : ServiceBase
     {
         private int eventId = 1;
 
         [DllImport("advapi32.dll", SetLastError = true)]
         private static extern bool SetServiceStatus(IntPtr handle, ref ServiceStatus serviceStatus);
 
-        public MyNewService(string[] args)
+        public ImageService()
         {
             InitializeComponent();
             string eventSourceName = "MySource";
             string logName = "MyNewLog";
-            if (args.Count() > 0)
-            {
-                eventSourceName = args[0];
-            }
-            if (args.Count() > 1)
-            {
-                logName = args[1];
-            }
+ 
             eventLog1 = new System.Diagnostics.EventLog();
             if (!System.Diagnostics.EventLog.SourceExists(eventSourceName))
             {
@@ -68,7 +61,7 @@ namespace MyNewService
             // Update the service state to Start Pending.   
             ServiceStatus serviceStatus = new ServiceStatus();
             serviceStatus.dwCurrentState = ServiceState.SERVICE_START_PENDING;
-            serviceStatus.dwWaitHint = 100000; 
+            serviceStatus.dwWaitHint = 100000;
             SetServiceStatus(this.ServiceHandle, ref serviceStatus);
             eventLog1.WriteEntry("In OnStart");
             // Set up a timer to trigger every minute.  
@@ -88,7 +81,7 @@ namespace MyNewService
             serviceStatus.dwCurrentState = ServiceState.SERVICE_STOP_PENDING;
             serviceStatus.dwWaitHint = 100000;
             SetServiceStatus(this.ServiceHandle, ref serviceStatus);
-            
+
             eventLog1.WriteEntry("In onStop.");
             serviceStatus.dwCurrentState = ServiceState.SERVICE_STOPPED;
             SetServiceStatus(this.ServiceHandle, ref serviceStatus);

@@ -1,6 +1,6 @@
-﻿namespace MyNewService
+﻿namespace ImageService
 {
-    partial class MyNewService
+    partial class ImageService
     {
         /// <summary> 
         /// Required designer variable.
@@ -32,15 +32,15 @@
             this.eventLog1 = new System.Diagnostics.EventLog();
             ((System.ComponentModel.ISupportInitialize)(this.eventLog1)).BeginInit();
             // 
-            // MyNewService
+            // ImageService
             // 
-            this.ServiceName = "MyNewService";
+            this.ServiceName = "ImageService";
             ((System.ComponentModel.ISupportInitialize)(this.eventLog1)).EndInit();
 
         }
 
         #endregion
 
-        
+
     }
 }
