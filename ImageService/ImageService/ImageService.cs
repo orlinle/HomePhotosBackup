@@ -18,19 +18,11 @@ namespace ImageService
         [DllImport("advapi32.dll", SetLastError = true)]
         private static extern bool SetServiceStatus(IntPtr handle, ref ServiceStatus serviceStatus);
 
-        public ImageService(string[] args)
+        public ImageService()
         {
             InitializeComponent();
             string eventSourceName = "MySource";
             string logName = "MyNewLog";
-            if (args.Count() > 0)
-            {
-                eventSourceName = args[0];
-            }
-            if (args.Count() > 1)
-            {
-                logName = args[1];
-            }
             eventLog1 = new System.Diagnostics.EventLog();
             if (!System.Diagnostics.EventLog.SourceExists(eventSourceName))
             {
